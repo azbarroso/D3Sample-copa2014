@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>MonoBolão da Copa 2014 </title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 11px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 10px 0 20px 20px;
+        }
+
+        li {
+            display: inline;
+            list-style: none;
+        }
+
+        a {
+            font-size: 12px;
+            background: #ccc;
+            border-radius: 12px;
+            padding: 3px 8px;
+            border: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        /**/
+        .info {
+            font-size: 12px;
+            margin: 0;
+            padding: 10px 0 10px 20px;
+            background-color: #eeeeee;
+        }
+        #infoDate{
+            font-weight: bold;
+        }
+    </style>
+    <script type="text/javascript" src="d3/d3.js"></script>
+    <!--script type="text/javascript" src="data/databolao.json"></script-->
+    <script>
+        var data97 = [
+            {"name" : "Catita", "total" : 173},
+            {"name" : "Miranda", "total" : 181},
+            {"name" : "Rafa", "total" : 155},
+            {"name" : "Quiluca", "total" : 152},
+            {"name" : "Leleco", "total" : 177},
+            {"name" : "Duda", "total" : 124},
+            {"name" : "Calvet", "total" : 120},
+            {"name" : "Stenga", "total" : 109},
+            {"name" : "Ricardo", "total" : 120}
+        ];
+    	var data57 = [
+            {"name" : "Catita", "total" : 173},
+            {"name" : "Miranda", "total" : 171},
+            {"name" : "Rafa", "total" : 155},
+            {"name" : "Quiluca", "total" : 152},
+            {"name" : "Leleco", "total" : 177},
+            {"name" : "Duda", "total" : 124},
+            {"name" : "Calvet", "total" : 120},
+            {"name" : "Stenga", "total" : 109},
+            {"name" : "Ricardo", "total" : 120}
+        ];
+        
+		 var data47 = [
+            {"name" : "Catita", "total" : 173},
+            {"name" : "Miranda", "total" : 171},
+            {"name" : "Rafa", "total" : 155},
+            {"name" : "Quiluca", "total" : 152},
+            {"name" : "Leleco", "total" : 163},
+            {"name" : "Duda", "total" : 124},
+            {"name" : "Calvet", "total" : 120},
+            {"name" : "Stenga", "total" : 109},
+            {"name" : "Ricardo", "total" : 120}
+        ];
+        
+        var data266 = [
+            {"name" : "Catita", "total" : 147},
+            {"name" : "Miranda", "total" : 145},
+            {"name" : "Rafa", "total" : 135},
+            {"name" : "Quiluca", "total" : 126},
+            {"name" : "Leleco", "total" : 125},
+            {"name" : "Duda", "total" : 124},
+            {"name" : "Calvet", "total" : 114},
+            {"name" : "Stenga", "total" : 109},
+            {"name" : "Ricardo", "total" : 106}
+        ];
+
+        var data256 = [
+            {"name" : "Catita", "total" : 122},
+            {"name" : "Miranda", "total" : 111},
+            {"name" : "Rafa", "total" : 113},
+            {"name" : "Quiluca", "total" : 103},
+            {"name" : "Leleco", "total" : 100},
+            {"name" : "Duda", "total" : 97},
+            {"name" : "Calvet", "total" : 86},
+            {"name" : "Stenga", "total" : 88},
+            {"name" : "Ricardo", "total" : 86}
+        ];
+
+        var data246 = [
+            {"name" : "Catita", "total" : 93},
+            {"name" : "Miranda", "total" : 82},
+            {"name" : "Rafa", "total" : 88},
+            {"name" : "Quiluca", "total" : 77},
+            {"name" : "Leleco", "total" : 78},
+            {"name" : "Duda", "total" : 75},
+            {"name" : "Calvet", "total" : 67},
+            {"name" : "Stenga", "total" : 69},
+            {"name" : "Ricardo", "total" : 61}
+        ];
+
+        var data236 = [
+            {"name" : "Catita", "total" : 71},
+            {"name" : "Miranda", "total" : 70},
+            {"name" : "Rafa", "total" : 79},
+            {"name" : "Quiluca", "total" : 77},
+            {"name" : "Leleco", "total" : 64},
+            {"name" : "Duda", "total" : 72},
+            {"name" : "Calvet", "total" : 58},
+            {"name" : "Stenga", "total" : 62},
+            {"name" : "Ricardo", "total" : 61}
+        ];
+
+        var data226 = [
+            {"name" : "Catita", "total" : 50},
+            {"name" : "Miranda", "total" : 52},
+            {"name" : "Rafa", "total" : 61},
+            {"name" : "Quiluca", "total" : 53},
+            {"name" : "Leleco", "total" : 49},
+            {"name" : "Duda", "total" : 49},
+            {"name" : "Calvet", "total" : 36},
+            {"name" : "Stenga", "total" : 40},
+            {"name" : "Ricardo", "total" : 44}
+        ];
+
+        var data216 = [
+            {"name" : "Catita", "total" : 50},
+            {"name" : "Miranda", "total" : 44},
+            {"name" : "Rafa", "total" : 53},
+            {"name" : "Quiluca", "total" : 53},
+            {"name" : "Leleco", "total" : 41},
+            {"name" : "Duda", "total" : 49},
+            {"name" : "Calvet", "total" : 33},
+            {"name" : "Stenga", "total" : 40},
+            {"name" : "Ricardo", "total" : 38}
+        ];
+
+        var data206 = [
+            {"name" : "Catita", "total" : 47},
+            {"name" : "Miranda", "total" : 38},
+            {"name" : "Rafa", "total" : 50},
+            {"name" : "Quiluca", "total" : 47},
+            {"name" : "Leleco", "total" : 38},
+            {"name" : "Duda", "total" : 43},
+            {"name" : "Calvet", "total" : 27},
+            {"name" : "Stenga", "total" : 37},
+            {"name" : "Ricardo", "total" : 35}
+        ];
+
+        var data196 = [
+            {"name" : "Catita", "total" : 44},
+            {"name" : "Miranda", "total" : 35},
+            {"name" : "Rafa", "total" : 47},
+            {"name" : "Quiluca", "total" : 41},
+            {"name" : "Leleco", "total" : 38},
+            {"name" : "Duda", "total" : 38},
+            {"name" : "Calvet", "total" : 24},
+            {"name" : "Stenga", "total" : 37},
+            {"name" : "Ricardo", "total" : 29}
+        ];
+
+        var data186 = [
+            {"name" : "Catita", "total" : 36},
+            {"name" : "Miranda", "total" : 32},
+            {"name" : "Rafa", "total" : 39},
+            {"name" : "Quiluca", "total" : 41},
+            {"name" : "Leleco", "total" : 35},
+            {"name" : "Duda", "total" : 38},
+            {"name" : "Calvet", "total" : 24},
+            {"name" : "Stenga", "total" : 34},
+            {"name" : "Ricardo", "total" : 26}
+        ];
+
+        var data176 = [
+            {"name" : "Catita", "total" : 33},
+            {"name" : "Miranda", "total" : 29},
+            {"name" : "Rafa", "total" : 33},
+            {"name" : "Quiluca", "total" : 35},
+            {"name" : "Leleco", "total" : 29},
+            {"name" : "Duda", "total" : 32},
+            {"name" : "Calvet", "total" : 21},
+            {"name" : "Stenga", "total" : 31},
+            {"name" : "Ricardo", "total" : 23}
+        ];
+
+        var data166 = [
+            {"name" : "Catita", "total" : 30},
+            {"name" : "Miranda", "total" : 26},
+            {"name" : "Rafa", "total" : 30},
+            {"name" : "Quiluca", "total" : 32},
+            {"name" : "Leleco", "total" : 26},
+            {"name" : "Duda", "total" : 26},
+            {"name" : "Calvet", "total" : 15},
+            {"name" : "Stenga", "total" : 25},
+            {"name" : "Ricardo", "total" : 20}
+        ];
+
+        var data156 = [
+            {"name" : "Catita", "total" : 27},
+            {"name" : "Miranda", "total" : 20},
+            {"name" : "Rafa", "total" : 27},
+            {"name" : "Quiluca", "total" : 29},
+            {"name" : "Leleco", "total" : 18},
+            {"name" : "Duda", "total" : 18},
+            {"name" : "Calvet", "total" : 15},
+            {"name" : "Stenga", "total" : 25},
+            {"name" : "Ricardo", "total" : 17}
+        ];
+
+        var data146 = [
+            {"name" : "Catita", "total" : 14},
+            {"name" : "Miranda", "total" : 9},
+            {"name" : "Rafa", "total" : 19},
+            {"name" : "Quiluca", "total" : 20},
+            {"name" : "Leleco", "total" : 12},
+            {"name" : "Duda", "total" : 9},
+            {"name" : "Calvet", "total" : 9},
+            {"name" : "Stenga", "total" : 16},
+            {"name" : "Ricardo", "total" : 6}
+        ];
+
+        var data136 = [
+            {"name" : "Catita", "total" : 6},
+            {"name" : "Miranda", "total" : 6},
+            {"name" : "Rafa", "total" : 6},
+            {"name" : "Quiluca", "total" : 11},
+            {"name" : "Leleco", "total" : 6},
+            {"name" : "Duda", "total" : 6},
+            {"name" : "Calvet", "total" : 6},
+            {"name" : "Stenga", "total" : 11},
+            {"name" : "Ricardo", "total" : 6}
+        ];
+
+        var data126 = [
+            {"name" : "Catita", "total" : 3},
+            {"name" : "Miranda", "total" : 3},
+            {"name" : "Rafa", "total" : 3},
+            {"name" : "Quiluca", "total" : 3},
+            {"name" : "Leleco", "total" : 3},
+            {"name" : "Duda", "total" : 3},
+            {"name" : "Calvet", "total" : 3},
+            {"name" : "Stenga", "total" : 3},
+            {"name" : "Ricardo", "total" : 3}
+        ];
+
+    </script>
+
+
+</head>
+
+
+<body>
+<h2>Resultado do MonoBolão da Copa 2014</h2>
+<ul>
+    <li><a class="aDate">9.7</a></li>
+	<li><a class="aDate">5.7</a></li>
+	<li><a class="aDate">4.7</a></li>
+    <li><a class="aDate">26.6</a></li>
+    <li><a class="aDate">25.6</a></li>
+    <li><a class="aDate">24.6</a></li>
+    <li><a class="aDate">23.6</a></li>
+    <li><a class="aDate">22.6</a></li>
+    <li><a class="aDate">21.6</a></li>
+    <li><a class="aDate">20.6</a></li>
+    <li><a class="aDate">19.6</a></li>
+    <li><a class="aDate">18.6</a></li>
+    <li><a class="aDate">17.6</a></li>
+    <li><a class="aDate">16.6</a></li>
+    <li><a class="aDate">15.6</a></li>
+    <li><a class="aDate">14.6</a></li>
+    <li><a class="aDate">13.6</a></li>
+    <li><a class="aDate">12.6</a></li>
+</ul>
+
+<div class="info"><span>Selecione data acima</span><span id="infoDate"></span></div>
+
+<div id="divCanvas"></div>
+
+
+<script>
+
+    var svg = d3.select("#divCanvas").append("svg")
+            .attr("width", 800)
+            .attr("height", 420);
+
+
+    var node;
+    var scale = d3.scale.linear()
+            .domain([0,300])
+            .range([0,800]);
+
+    //var color = d3.scale.category20c();
+
+    var color = d3.scale.linear()
+            .domain([0,300])
+            .range(["yellow", "green"]);
+
+    // functions to calculate y positions
+    var y_rect = function(d,i) { return i*40+16; };
+    var y_text = function(d,i) { return i*40+30; };
+
+
+    function update(data)
+    {
+
+        //data.sort(d3.descending);
+        data.sort(function(a, b){ return d3.descending(a.total, b.total); });
+
+        max = d3.max(data, function(d){return d.total});
+        min = d3.min(data, function(d){return d.total});
+
+        // initial select, like all D3 examples, bind it to data
+        node = svg.selectAll(".node")
+                .data(data);
+
+
+        // update changing elements with new percentage and bar width
+        node.each(function(d, i) {
+
+            single = d3.select(this);
+            //alert(d.name + " | " + d.total);
+            single.selectAll("rect")
+                    .transition()
+                    .attr("width", scale(d.total))
+                    .style("fill", color(d.total))
+                    .attr("y", y_rect(d,i))
+                    .duration(300);
+
+            single.selectAll("image")
+                    .attr("y", y_rect(d,i))
+                    .attr("xlink:href", "img/"+ d.name + ".png");
+
+            single.selectAll("text")
+                    .transition()
+                    .attr("y", y_text(d,i))
+                    .text(i+1 + " "+ d.name + ": " + d.total)
+                    .style("fill", (min == d.total)?"#cc0000":"#000")
+                    .style("font-weight", (min == d.total)?"bold":"normal")
+                    .duration(300);
+
+            //if(max == d.total){alert("max: " + max + " | " + d.name)};
+            //if(min == d.total){alert("min: " + min + " | " + d.name)};
+        });
+
+
+        // Create entering nodes with the bar (<rect>) and the percentage (<text>)
+        // grouped in a <g class="node"> element
+        var enter = node.enter().append("g")
+                .attr("class", "node");
+
+        enter.append("rect")
+                .attr("width", function(d) {return scale(d.total)})
+                .attr("height", 20)
+                .attr("x", 22)
+                .attr("y", y_rect)
+                .style("fill", function(d) {return color(d.total)})
+                .attr("rx", "5px")
+                .attr("ry", "5px");
+
+        enter.append("image")
+                .attr("width", 20)
+                .attr("height", 20)
+                .attr("x", 0)
+                .attr("y", y_rect)
+                .attr("xlink:href", function(d){return "img/"+ d.name + ".png"});
+
+        enter.append("text")
+                .text(function(d,i) { return i+1 + " " + d.name + ": " + d.total; })
+                .style("fill", function(d){return (min == d.total)?"#cc0000":"#000"})
+                .style("font-weight", function(d){return (min == d.total)?"bold":"normal"})
+                .attr("x", 24)
+                .attr("y", y_text)
+                .style("text-anchor", "right");
+
+        // Add a fade in transition to all entering elements and child elements
+        enter.selectAll("*")
+                .style("opacity", 0)
+                .transition()
+                .duration(300)
+                .style("opacity", 1);
+
+        // fade out and remove all exiting elements
+        node.exit()
+                .style("opacity", 1)
+                .transition()
+                .duration(300)
+                .style("opacity", 0)
+                .remove();
+    };
+
+
+    //update dataset onclick
+    d3.selectAll(".aDate").on("click", function(){updateData(this.text.replace('.',''));
+    d3.select(".info span").text("Data Selecionada: ");
+    d3.select("#infoDate").text(this.text);
+    });
+
+    //d3.select(".aDate").click();
+
+    function updateData(s){
+        update(eval("data"+s));
+    }
+
+
+</script>
+
+</body>
